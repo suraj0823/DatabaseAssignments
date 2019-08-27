@@ -1,0 +1,62 @@
+CREATE TABLE Member
+(
+  MemberID int AUTO_INCREMENT 
+  primary key,
+  FName varchar(20) not null,
+  MName varchar(10),
+  LName varchar(20) not null,
+  Mem_DOJ date,
+  Email varchar(30),
+  Phone char(10),
+  Mem_type ENUM 
+  ('Regular', 'Silver', 'Gold',
+   'Premium'
+  )
+);
+
+-- ADD CONSTRAINT.
+
+ALTER TABLE Member
+ADD CONSTRAINT Member_Email_UQ
+  UNIQUE(Email);
+
+DESCRIBE Member;
+
+INSERT INTO Member
+(FName, MName, LName, Mem_DOJ,
+Email, Phone, Mem_type)
+VALUES
+('Janet', NULL, 'King', NOW(),
+  'JKing@adventureworks.com',
+  '7324591234', 'Regular'
+);
+
+INSERT INTO Member
+(FName, MName, LName, Mem_DOJ,
+Email, Phone, Mem_type)
+VALUES
+('Steven', NULL, 'King', NOW(),
+  'SKing@adventureworks.com',
+  '7323324509', 'Gold'
+);
+
+INSERT INTO Member
+(FName, MName, LName, Mem_DOJ,
+Email, Phone, Mem_type)
+VALUES
+('Tammy', 'S', 'King', NOW(),
+  NULL,
+  '7323324509', 'Silver'
+);
+
+INSERT INTO Member
+(FName, MName, LName, Mem_DOJ,
+Email, Phone, Mem_type)
+VALUES
+('Andy', 'J', 'Hillman', 
+ '2019-08-27', NULL,
+  '8213761029', 'Silver'
+);
+
+SELECT *
+  FROM Member;

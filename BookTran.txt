@@ -1,0 +1,61 @@
+-- Create a table with 
+-- Foreign key.
+CREATE TABLE BookTran
+(
+  TrnID int AUTO_INCREMENT
+    primary key,
+  TrnDate datetime,
+  BookID int REFERENCES 
+  Book(BookID),
+  MemberID int,
+  CONSTRAINT BookTran_MemberID_FK
+   FOREIGN KEY(MemberID) 
+   REFERENCES Member(MemberID)
+);
+
+-- Column level constraint.
+DROP TABLE BookTran;
+CREATE TABLE BookTran
+(
+  TrnID int AUTO_INCREMENT
+    primary key,
+  TrnDate datetime,
+  BookID int REFERENCES 
+  Book(BookID),
+  MemberID int REFERENCES 
+  Member(MemberID)
+);
+
+-- Table level constraint.
+DROP TABLE BookTran;
+CREATE TABLE BookTran
+(
+  TrnID int AUTO_INCREMENT
+    primary key,
+  TrnDate datetime,
+  BookID int,
+  MemberID int,
+
+  CONSTRAINT BookTran_BookID_FK
+   FOREIGN KEY(BookID)
+   REFERENCES Book(BookID),
+
+  CONSTRAINT BookTran_MemberID_FK
+   FOREIGN KEY(MemberID) 
+   REFERENCES Member(MemberID)
+);
+
+
+DESCRIBE BookTran;
+
+INSERT INTO BookTran
+(TrnDate, BookID, MemberID)
+VALUES
+(NOW(), 4, 1);
+
+INSERT INTO BookTran
+(TrnDate, BookID, MemberID)
+VALUES
+(NOW(), 5, 10);
+
+

@@ -1,0 +1,96 @@
+CREATE TABLE Book
+(
+  BookID int AUTO_INCREMENT
+  primary key,
+  BookName varchar(50) not null,
+  Price decimal(6, 2)
+);
+
+
+
+-- Add a column.
+ALTER TABLE Book
+  ADD COLUMN Author varchar(40)
+  not null;
+
+-- Check table structure.
+DESCRIBE Book;
+
+-- change column definition.
+ALTER TABLE Book
+  MODIFY COLUMN Author varchar(30)
+  not null;
+
+ALTER TABLE Book
+  MODIFY COLUMN Author char(30)
+  not null;
+
+-- REMOVE COLUMN.
+ALTER TABLE Book
+  DROP COLUMN Author;
+
+INSERT INTO Book
+(BookName, Price) VALUES
+('MySQL for dummies', 350),
+('MySQL for Developers', 560);
+
+
+INSERT INTO Book
+(BookName, Price) VALUES
+('HTML5 Step by Step', NULL),
+('Java Unleashed', -560);
+
+DELETE FROM Book
+  WHERE BookID = 4;
+
+TRUNCATE Book;
+
+DROP TABLE Book;
+
+ALTER TABLE Book
+  DROP CONSTRAINT Book_Price_CHK;
+
+
+ALTER TABLE Book
+  ADD CONSTRAINT Book_Price_CHK
+  CHECK (Price >= 200 
+          AND Price <= 3000
+        );
+ALTER TABLE Book
+  ADD CONSTRAINT Book_Price_CHK
+  CHECK (Price BETWEEN 200 
+          AND 3000
+        );
+INSERT INTO Book
+(BookName, Price) VALUES
+('HTML5 Unleashed', NULL);
+
+INSERT INTO Book
+(BookName, Price) VALUES
+('.Net Unleashed', 100);
+
+
+SELECT *
+  FROM Book;
+
+-- Check constraint is not supported
+by mysql.
+
+drop TABLE T1
+CREATE TABLE T1
+(Price decimal(6, 2)
+ CONSTRAINT T1_CHK
+CHECK (Price BETWEEN 200 
+          AND 3000 )
+);
+
+INSERT INTO T1 VALUES
+(100);
+
+INSERT INTO T1 VALUES
+(300);
+
+SELECT *
+  FROM T1;
+
+

@@ -1,0 +1,300 @@
+    -> Email, Phone, Mem_type)
+    -> VALUES
+    -> ('surjya', 'S', 'King', NOW(),
+    ->   'surjya007@juhu.com',
+    ->   '8844554756', 'Gold'
+    -> );
+Query OK, 1 row affected, 1 warning (0.02 sec)
+
+mysql> INSERT INTO Member
+    -> (FName, MName, LName, Mem_DOJ,
+    -> Email, Phone, Mem_type)
+    -> VALUES
+    -> ('Shubhya', null, 'Salseman',
+    ->  '2012-12-12', NULL,
+    ->   '8213761029', 'Silver'
+    -> );
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from member
+    -> ;
++----------+---------+-------+----------+------------+--------------------------+------------+----------+
+| MemberID | FName   | MName | LName    | Mem_DOJ    | Email                    | Phone      | Mem_type |
++----------+---------+-------+----------+------------+--------------------------+------------+----------+
+|        1 | MANYA   | NULL  | SURVE    | 2017-12-17 | manyasurve@wadala.com    | 7777777333 | Premium  |
+|        2 | Steven  | NULL  | King     | 2019-08-27 | SKing@adventureworks.com | 7323324509 | Gold     |
+|        3 | surjya  | S     | King     | 2019-08-27 | surjya007@juhu.com       | 8844554756 | Gold     |
+|        4 | Shubhya | NULL  | Salseman | 2012-12-12 | NULL                     | 8213761029 | Silver   |
++----------+---------+-------+----------+------------+--------------------------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> create a table book
+    -> (
+    -> bookID int AUTO_INCREMENT Primary key, BookName Varchar(50) not null,
+    -> Price Decimal(6,2)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'a table bo
+ok
+(
+bookID int AUTO_INCREMENT Primary key, BookName Varchar(50) not n' at line 1
+mysql> create table book
+    -> (
+    -> bookID int AUTO_INCREMENT Primary key, BookName Varchar(50) not null,
+    -> Price Decimal(6,2)
+    -> );
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> desc book
+    -> ;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| bookID   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| BookName | varchar(50)  | NO   |     | NULL    |                |
+| Price    | decimal(6,2) | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Book
+    -> ADD COLUMN Author varchar(40) not null;
+Query OK, 0 rows affected (0.31 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc book
+    -> ;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| bookID   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| BookName | varchar(50)  | NO   |     | NULL    |                |
+| Price    | decimal(6,2) | YES  |     | NULL    |                |
+| Author   | varchar(40)  | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Book
+    -> DROP COLUMN Author;
+Query OK, 0 rows affected (0.30 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc book;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| bookID   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| BookName | varchar(50)  | NO   |     | NULL    |                |
+| Price    | decimal(6,2) | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO Book (BookName, Price) Values ('Basics of C', '3000'),('Advance C ', '6000');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from book
+    -> select * from book;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * f
+rom book' at line 2
+mysql> select * from book;
++--------+-------------+---------+
+| bookID | BookName    | Price   |
++--------+-------------+---------+
+|      1 | Basics of C | 3000.00 |
+|      2 | Advance C   | 6000.00 |
++--------+-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO Book('BookName, Price) VALUES ('.net basics','200'),('advance marathi','9999')_;
+    '> INSERT INTO Book('BookName, Price) VALUES ('.net basics','200'),('advance marathi','9999');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''BookName,
+ Price) VALUES ('.net basics','200'),('advance marathi','9999')_;
+INSE' at line 1
+mysql> INSERT INTO Book('BookName, Price) VALUES ('.net basics','200'),('advance marathi','9999');
+    '> INSERT INTO Book('BookName, Price) VALUES ('.net basics','200'),('advance marathi','9999');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''BookName,
+ Price) VALUES ('.net basics','200'),('advance marathi','9999');
+INSER' at line 1
+mysql> INSERT INTO Book(BookName, Price) VALUES ('.net basics','200'),('advance marathi','9999');
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from book;
++--------+-----------------+---------+
+| bookID | BookName        | Price   |
++--------+-----------------+---------+
+|      1 | Basics of C     | 3000.00 |
+|      2 | Advance C       | 6000.00 |
+|      3 | .net basics     |  200.00 |
+|      4 | advance marathi | 9999.00 |
++--------+-----------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from member;
++----------+---------+-------+----------+------------+--------------------------+------------+----------+
+| MemberID | FName   | MName | LName    | Mem_DOJ    | Email                    | Phone      | Mem_type |
++----------+---------+-------+----------+------------+--------------------------+------------+----------+
+|        1 | MANYA   | NULL  | SURVE    | 2017-12-17 | manyasurve@wadala.com    | 7777777333 | Premium  |
+|        2 | Steven  | NULL  | King     | 2019-08-27 | SKing@adventureworks.com | 7323324509 | Gold     |
+|        3 | surjya  | S     | King     | 2019-08-27 | surjya007@juhu.com       | 8844554756 | Gold     |
+|        4 | Shubhya | NULL  | Salseman | 2012-12-12 | NULL                     | 8213761029 | Silver   |
++----------+---------+-------+----------+------------+--------------------------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> delete from book where bookid = 4;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from book;
++--------+-------------+---------+
+| bookID | BookName    | Price   |
++--------+-------------+---------+
+|      1 | Basics of C | 3000.00 |
+|      2 | Advance C   | 6000.00 |
+|      3 | .net basics |  200.00 |
++--------+-------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE BookTransaction
+    -> (
+    -> TrnsID int AUTO_INCREMENT Primary key, TransDate Datetime, BookID int REFERENCES Book(BookID),
+    -> MemberId int, CONSTRAINT BookTrans_MemberID_FK FOREIGN KEY(MembeID)
+    -> REFERENCES Member(MemberID)
+    -> );
+ERROR 1072 (42000): Key column 'MembeID' doesn't exist in table
+mysql> CREATE TABLE BookTransaction
+    -> (TrnsID int AUTO_INCREMENT Primary key, TransDate Datetime, BookID int REFERENCES Book(BookID),
+    -> MemberId int, CONSTRAINT BookTrans_MemberID_FK FOREIGN KEY(MemberID)
+    -> REFERENCES Member(MemberID)
+    -> );
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> desc booktransaction;
++-----------+----------+------+-----+---------+----------------+
+| Field     | Type     | Null | Key | Default | Extra          |
++-----------+----------+------+-----+---------+----------------+
+| TrnsID    | int(11)  | NO   | PRI | NULL    | auto_increment |
+| TransDate | datetime | YES  |     | NULL    |                |
+| BookID    | int(11)  | YES  |     | NULL    |                |
+| MemberId  | int(11)  | YES  | MUL | NULL    |                |
++-----------+----------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> select  * from  member;
++----------+---------+-------+----------+------------+--------------------------+------------+----------+
+| MemberID | FName   | MName | LName    | Mem_DOJ    | Email                    | Phone      | Mem_type |
++----------+---------+-------+----------+------------+--------------------------+------------+----------+
+|        1 | MANYA   | NULL  | SURVE    | 2017-12-17 | manyasurve@wadala.com    | 7777777333 | Premium  |
+|        2 | Steven  | NULL  | King     | 2019-08-27 | SKing@adventureworks.com | 7323324509 | Gold     |
+|        3 | surjya  | S     | King     | 2019-08-27 | surjya007@juhu.com       | 8844554756 | Gold     |
+|        4 | Shubhya | NULL  | Salseman | 2012-12-12 | NULL                     | 8213761029 | Silver   |
++----------+---------+-------+----------+------------+--------------------------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select  * from  book;
++--------+-------------+---------+
+| bookID | BookName    | Price   |
++--------+-------------+---------+
+|      1 | Basics of C | 3000.00 |
+|      2 | Advance C   | 6000.00 |
+|      3 | .net basics |  200.00 |
++--------+-------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select  * from  booktransaction;
+Empty set (0.00 sec)
+
+mysql> desc  booktransaction;
++-----------+----------+------+-----+---------+----------------+
+| Field     | Type     | Null | Key | Default | Extra          |
++-----------+----------+------+-----+---------+----------------+
+| TrnsID    | int(11)  | NO   | PRI | NULL    | auto_increment |
+| TransDate | datetime | YES  |     | NULL    |                |
+| BookID    | int(11)  | YES  |     | NULL    |                |
+| MemberId  | int(11)  | YES  | MUL | NULL    |                |
++-----------+----------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> DROP TABLE BookTransaction;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> CREATE TABLE BookTranaction
+    -> (
+    ->   TrnID int AUTO_INCREMENT
+    ->     primary key,
+    ->   TrnDate datetime,
+    ->   BookID int REFERENCES
+    ->   Book(BookID),
+    ->   MemberID int REFERENCES
+    ->   Member(MemberID)
+    -> );
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> desc  booktransaction;
+ERROR 1146 (42S02): Table 'surya.booktransaction' doesn't exist
+mysql> desc BookTransaction;
+ERROR 1146 (42S02): Table 'surya.booktransaction' doesn't exist
+mysql> desc BookTranaction;
++----------+----------+------+-----+---------+----------------+
+| Field    | Type     | Null | Key | Default | Extra          |
++----------+----------+------+-----+---------+----------------+
+| TrnID    | int(11)  | NO   | PRI | NULL    | auto_increment |
+| TrnDate  | datetime | YES  |     | NULL    |                |
+| BookID   | int(11)  | YES  |     | NULL    |                |
+| MemberID | int(11)  | YES  |     | NULL    |                |
++----------+----------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_surya |
++-----------------+
+| book            |
+| booktranaction  |
+| member          |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| detailstomorrow    |
+| manya              |
+| mydb               |
+| mysql              |
+| performance_schema |
+| product            |
+| serv               |
+| surya              |
+| sys                |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> show table booktranaction;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'booktranac
+tion' at line 1
+mysql> show table booktranaction;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'booktranac
+tion' at line 1
+mysql> show tables;
++-----------------+
+| Tables_in_surya |
++-----------------+
+| book            |
+| booktranaction  |
+| member          |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc booktranaction;
++----------+----------+------+-----+---------+----------------+
+| Field    | Type     | Null | Key | Default | Extra          |
++----------+----------+------+-----+---------+----------------+
+| TrnID    | int(11)  | NO   | PRI | NULL    | auto_increment |
+| TrnDate  | datetime | YES  |     | NULL    |                |
+| BookID   | int(11)  | YES  |     | NULL    |                |
+| MemberID | int(11)  | YES  |     | NULL    |                |
++----------+----------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql>
